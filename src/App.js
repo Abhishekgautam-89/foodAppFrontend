@@ -3,9 +3,9 @@ import './App.css';
 import Headers from './components/layout/headers'
 function App() {
   return (
-    <>
+    <Fragment>
     <Headers/>
-    </>
+    </Fragment>
   );
 }
 
