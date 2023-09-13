@@ -1,11 +1,17 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import './App.css';
 import Headers from './components/layout/headers'
+import Meals from './components/meals/Meals';
+
 function App() {
   return (
     <Fragment>
-    <Headers/>
+      <Headers />
+      <main>
+        <Meals />
+      </main>
     </Fragment>
+
   );
 }
 
