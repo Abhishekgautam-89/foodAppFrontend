@@ -3,14 +3,15 @@ import image from '../../assets/foodapp.jpg'
 import  "./header.css";
 import HeaderButton from './HeaderButton';
 
-const headers = () => {
+const headers = (props) => {
+  // console.log("header> ", props)
   return (
     <Fragment>
        <header className='h-[65px] fixed w-[100%] bg-red-800 flex items-center justify-between px-24 z-10 '>       
       <h1 className='text-3xl font-bold text-white italic'> 
         Food App
       </h1>
-      <HeaderButton/>
+      <HeaderButton onClick={props.onShowCart}/>
 
       {/* <button className='bg-white px-2 ' >Cart</button> */}
       </header> 

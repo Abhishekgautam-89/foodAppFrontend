@@ -1,3 +1,4 @@
+
 import React from 'react'
 
 const Input = (props) => {
@@ -8,7 +9,6 @@ const Input = (props) => {
             </label>
             <input className=' border-gray-200 border-2	border-solid w-12 pl-3 h-8 rounded-lg ' {...props.input}>
             </input>
-
         </div>
     )
 }

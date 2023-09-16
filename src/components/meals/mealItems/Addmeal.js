@@ -3,6 +3,7 @@ import MealForm from './MealForm'
 
 const Addmeal = (props) => {
   // console.log(mealList)
+  // toFixed is used to get number after decimal upto 2 digits.
   const price = `$${props.price.toFixed(2)}`
   return (
     <li className='flex p-2 border-b-2 justify-between items-center' >
