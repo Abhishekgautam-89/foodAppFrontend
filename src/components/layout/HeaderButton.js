@@ -4,8 +4,9 @@ import CartContext from '../../store/cart-context'
 
 const HeaderButton = (props) => {
   const cartItems= useContext(CartContext)
+  
   const numberOfCartItems = cartItems.items.reduce((acc, current)=>{
-    return acc+current.amount
+    return acc + Number(current.amount)
   },0)
   
   return (

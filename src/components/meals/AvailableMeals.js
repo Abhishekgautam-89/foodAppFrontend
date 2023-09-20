@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from './MealSummary.module.css'
+// import classes from './MealSummary.module.css'
 import Addmeal from './mealItems/Addmeal';
 import Card from '../UI/Card';
 const DUMMY_MEALS = [
@@ -33,6 +33,7 @@ const AvailableMeals = () => {
     const meals = DUMMY_MEALS.map((meal)=>
         <Addmeal 
         key={meal.id}
+        id={meal.id}
         name={meal.name}
         description={meal.description}
         price={meal.price}

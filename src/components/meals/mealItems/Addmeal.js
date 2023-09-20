@@ -1,10 +1,24 @@
-import React from 'react'
+import React , {useContext} from 'react'
 import MealForm from './MealForm'
+import CartContext from '../../../store/cart-context'
 
 const Addmeal = (props) => {
   // console.log(mealList)
   // toFixed is used to get number after decimal upto 2 digits.
+  const cartCTX = useContext(CartContext)
   const price = `$${props.price.toFixed(2)}`
+
+  function addCartHandler(amount){
+    
+    cartCTX.addItem({
+      id: props.id,
+      name: props.name,
+      amount: amount,
+      price: props.price 
+    })
+    // console.log(cartCTX)
+  }
+
   return (
     <li className='flex p-2 border-b-2 justify-between items-center' >
       <div>
@@ -17,7 +31,7 @@ const Addmeal = (props) => {
         </div>
       </div>
       <div>
-        <MealForm id={props.id} />
+        <MealForm id={props.id} onAddtoCart={addCartHandler} />
       </div>
     </li>
   )
