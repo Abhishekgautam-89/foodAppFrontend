@@ -9,14 +9,55 @@ let cartDefaultState = {
   switch (action.type){
     case 'ADD':
       {
-        // console.log("add ", action.item)
-        const updatedItems = state.items.concat(action.item);
         const totalAmount = (state.totalAmount) + action.item.price*action.item.amount
+        const existingCartItemIndex=state.items.findIndex((item)=>{
+          return item.id===action.item.id 
+        });
+        let existingCartItem = state.items[existingCartItemIndex]
+        let updatedItems
+
+        if(existingCartItem){
+          const updatedItem = {
+            ...existingCartItem,
+            amount: existingCartItem.amount+action.item.amount
+          }
+          updatedItems = [...state.items]
+          updatedItems[existingCartItemIndex] = updatedItem
+        }
+        else{
+          updatedItems=state.items.concat(action.item)
+        }
+
         return cartDefaultState={
           items:updatedItems,
           totalAmount: totalAmount
         }
       }
+     case 'REMOVE':{
+
+      const removedItemIndex = state.items.findIndex((item)=>{
+        return item.id === action.id
+      }) ;
+      const removedItem = state.items[removedItemIndex];
+       let updateAmount = state.totalAmount - removedItem.price;  ;
+      let updatedItems
+      if (removedItem.amount===1){
+        
+        updatedItems = state.items.filter(item=>{
+          return item.id !==action.id
+        })
+
+      }
+      else{        
+        const updatedItem = {...removedItem, amount: removedItem.amount-1}
+        updatedItems = [...state.items];
+        updatedItems[removedItemIndex] = updatedItem
+      }
+      return {
+        items: updatedItems,
+        totalAmount: updateAmount
+      }
+     } 
       default:
       return cartDefaultState
     }
@@ -37,7 +78,10 @@ const CartProvider = (props) => {
       console.log("initial", cartState)
     }
     const removeItemfromCartHandler = (id)=>{
-        
+        cartAction({
+          type:"REMOVE",
+          id:id
+        })
     }
 
     const cartContext = {

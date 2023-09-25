@@ -9,13 +9,22 @@ import CartItems from './CartItems'
 const Cart = (props) => {
   // console.log('cart>', props)
   const CartCTX = useContext(cartContext)
-  console.log("cart> ",CartCTX.items)
+  // console.log("cart> ",CartCTX.items)
   const items = CartCTX.items
   const totalAmount = `$${CartCTX.totalAmount.toFixed(2)}`;
   const checkItems = items.length>0
+  function cartAdditemHandler(item){
+    console.log("onAdding>>",item)
+    CartCTX.addItem({...item, amount:1 })
+  }
+  function cartRemoveItemHandler(id){
+    console.log("removed>", id)
+    CartCTX.removeItem(id)
+  }
+
   const cartItems = <ul className={classes['cart-items']} >
     {items.map((item) => {
-      return <CartItems key={item.id} name={item.name} amount={item.amount} price={item.price} />
+      return <CartItems key={item.id} name={item.name} amount={item.amount} price={item.price} onAdd={cartAdditemHandler.bind(null, item)} onRemove={cartRemoveItemHandler.bind(null, item.id)} />
     })}
   </ul>
   return (
